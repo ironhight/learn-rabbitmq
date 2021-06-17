@@ -1,5 +1,6 @@
 const amqp = require('amqplib/callback_api');
 
+// mỗi message gửi đến 1 consumer
 amqp.connect('amqp://localhost', function (error0, connection) {
 	if (error0) {
 		throw error0;
@@ -19,7 +20,7 @@ amqp.connect('amqp://localhost', function (error0, connection) {
 			durable: true, // đảm bảo message queue ko bao giờ bị mất nếu restart RabbitMQ
 		});
 
-		channel.sendToQueue(queue, Buffer.from(msg), {
+		channel.sendToQueue(queue, Buffer.from(msg), { // đang dùng default exchange vô danh, chứ ko phải ko có exchange
 			persistent: true, // đảm bảo message ko bao giờ bị mất, muốn kỹ hơn thì dùng Publisher Confirm
 		});
 
