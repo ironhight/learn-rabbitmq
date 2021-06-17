@@ -1,5 +1,6 @@
 const amqp = require('amqplib/callback_api');
 
+// không thể log dựa trên nhiều tiêu chí, như log từ mức độ nghiệm trọng và nguồn phát ra mức độ
 amqp.connect('amqp://localhost', function(error0, connection) {
     if (error0) {
         throw error0;
